@@ -1,30 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
-import EditScreenInfo from '../../components/edit-screen-info';
+import { AddTodoInput } from '../components/add-todo-input';
+import { TodoList } from '../components/todo-list';
+import { Screen } from '../components/ui/screen';
+import { Text } from '../components/ui/text';
 
-export default function TabOneScreen() {
+export default function Page() {
+  const { styles } = useStyles(todo);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-    </View>
+    <Screen>
+      <Text fw="bold" fs="h1" style={styles.title}>
+        My Tasks
+      </Text>
+      <AddTodoInput />
+      <TodoList />
+    </Screen>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-  separator: {
-    height: 1,
-    marginVertical: 30,
-    width: '80%',
-  },
+const todo = createStyleSheet((theme) => ({
   title: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    marginTop: theme.margins.sm,
+    marginBottom: theme.margins.xl,
   },
-});
+}));
