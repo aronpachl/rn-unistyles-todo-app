@@ -10,12 +10,16 @@ export const Input = React.forwardRef<
   TextInput,
   React.ComponentPropsWithoutRef<typeof TextInput> & Props
 >(({ children, variant, style, ...props }, ref) => {
-  const { styles } = useStyles(base, {
+  const { styles, theme } = useStyles(base, {
     variant,
   });
 
   return (
-    <TextInput ref={ref} style={[styles.base, style]} {...props}>
+    <TextInput
+      placeholderTextColor={theme.colors.primary}
+      ref={ref}
+      style={[styles.base, style]}
+      {...props}>
       {children}
     </TextInput>
   );
